@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.NonUniqueResultException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -61,7 +62,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto createEmployee(EmployeeDto employeeDto) {
-        if (employeeRepository.findByCode(employeeDto.getCode()).isPresent()) {
+        List<Employee> employees = employeeRepository.findAllByCode(employeeDto.getCode());
+        if (employees.size() > 1) {
             throw new AppException(ErrorCode.CODE_ALREADY_EXISTS);
         }
         Employee employeeAdd = new Employee();

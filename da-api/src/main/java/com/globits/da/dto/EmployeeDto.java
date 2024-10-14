@@ -28,11 +28,11 @@ public class EmployeeDto {
 
     @Min(value = 0, message = "Age cannot be negative.")
     private Integer age;
-    @NotEmpty(message = "provinceId is required")
+    @NotNull(message = "provinceId is required")
     private Integer provinceId;
-    @NotEmpty(message = "districtId is required")
+    @NotNull(message = "districtId is required")
     private Integer districtId;
-    @NotEmpty(message = "communeId is required")
+    @NotNull(message = "communeId is required")
     private Integer communeId;
 
     public EmployeeDto() {

@@ -30,4 +30,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     Optional<Employee> findByCode(String code);
 
+    List<Employee> findAllByCode(String code);
+
 }

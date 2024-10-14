@@ -108,14 +108,15 @@ INSERT INTO COMMUNE (ID, DISTRICT_ID, CODE, NAME) VALUES
 
 INSERT INTO CERTIFICATE (CODE, NAME, BEGIN, END, STATUS, PROVINCE_ID, EMPLOYEE_ID)
 VALUES
-('CERT001', 'Chứng chỉ An ninh Mạng', '2023-01-01', '2026-01-01', 1, 1, 16),
-('CERT002', 'Chứng chỉ Quản lý Dự án', '2022-05-15', '2025-05-15', 1, 2, 26),
-('CERT003', 'Chứng chỉ Kế toán', '2021-07-01', '2024-07-01', 1, 3, 33),
-('CERT004', 'Chứng chỉ Lập trình Java', '2023-03-20', '2026-03-20', 1, 1, 24),
-('CERT005', 'Chứng chỉ Quản lý Tài chính', '2022-08-10', '2025-08-10', 1, 5, 25),
-('CERT006', 'Chứng chỉ Thiết kế Đồ họa', '2020-09-01', '2023-09-01', 0, 3, 26),
-('CERT007', 'Chứng chỉ Chuyên gia Cloud', '2021-10-25', '2024-10-25', 1, 4, 17),
-('CERT008', 'Chứng chỉ Kỹ thuật AI', '2022-11-10', '2025-11-10', 1, 2, 18),
-('CERT009', 'Chứng chỉ Lập trình Python', '2023-12-01', '2026-12-01', 1, 4, 19),
-('CERT010', 'Chứng chỉ Phát triển Web', '2021-01-05', '2024-01-05', 1, 5, 30);
+('CERT001', 'Chứng chỉ An ninh Mạng', '2023-01-01', '2026-01-01', 1, 1, 98),
+('CERT002', 'Chứng chỉ Quản lý Dự án', '2022-05-15', '2025-05-15', 1, 2, 99),
+('CERT003', 'Chứng chỉ Kế toán', '2021-07-01', '2024-07-01', 1, 3, 100),
+('CERT004', 'Chứng chỉ Lập trình Java', '2023-03-20', '2026-03-20', 1, 1, 101),
+('CERT005', 'Chứng chỉ Quản lý Tài chính', '2022-08-10', '2025-08-10', 1, 5, 102),
+('CERT006', 'Chứng chỉ Thiết kế Đồ họa', '2020-09-01', '2023-09-01', 0, 3, 103),
+('CERT007', 'Chứng chỉ Chuyên gia Cloud', '2021-10-25', '2024-10-25', 1, 4, 104),
+('CERT008', 'Chứng chỉ Kỹ thuật AI', '2022-11-10', '2025-11-10', 1, 2, 105),
+('CERT009', 'Chứng chỉ Lập trình Python', '2023-12-01', '2026-12-01', 1, 4, 106),
+('CERT010', 'Chứng chỉ Phát triển Web', '2021-01-05', '2024-01-05', 1, 5, 107);
 
+select * from employee

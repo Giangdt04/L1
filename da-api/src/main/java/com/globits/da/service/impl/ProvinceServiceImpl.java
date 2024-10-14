@@ -1,8 +1,10 @@
 package com.globits.da.service.impl;
 
+import com.globits.da.domain.Employee;
 import com.globits.da.domain.address.Commune;
 import com.globits.da.domain.address.District;
 import com.globits.da.domain.address.Province;
+import com.globits.da.dto.EmployeeDto;
 import com.globits.da.dto.request.CommuneRequest;
 import com.globits.da.dto.request.DistrictRequest;
 import com.globits.da.dto.request.ProvinceRequest;
@@ -40,6 +42,7 @@ public class ProvinceServiceImpl implements ProvinceService {
     public Optional<Province> search(String code) {
         return provinceRepository.findProvinceByCode(code);
     }
+
 
     @Override
     @Transactional
@@ -179,10 +182,6 @@ public class ProvinceServiceImpl implements ProvinceService {
 
         // Lưu tỉnh và danh sách huyện đã cập nhật
         Province updatedProvince = provinceRepository.save(province);
-
-        List<DistrictResponse> districtResponses = updatedProvince.getDistricts().stream().map(d -> {
-            return new DistrictResponse(d.getId(), d.getCode(), d.getName(), d.getProvince().getId(), d.getProvince().getName()); // Không cần xã ở đây
-        }).collect(Collectors.toList());
 
         // Trả về thông tin tỉnh đã cập nhật
         return new ProvinceResponse(updatedProvince.getId(), updatedProvince.getCode(), updatedProvince.getName());

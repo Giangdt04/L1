@@ -86,7 +86,14 @@ public class RestEmployeeController {
 
     @PostMapping("/import")
     public ResponseEntity<?> importEmployees(@RequestParam("file") MultipartFile file) {
-        employeeService.saveEmployeesToDatabase(file);
-        return ResponseEntity.ok("Employees data upload and saved to database successfully");
+        if (file.isEmpty()) {
+            return ResponseEntity.badRequest().body("File is empty");
+        }
+        try {
+            employeeService.saveEmployeesToDatabase(file);
+            return ResponseEntity.ok("Employees imported successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error importing employees: " + e.getMessage());
+        }
     }
 }
