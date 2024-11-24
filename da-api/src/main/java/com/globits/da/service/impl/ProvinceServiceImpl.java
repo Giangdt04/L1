@@ -1,15 +1,11 @@
 package com.globits.da.service.impl;
 
-import com.globits.da.domain.Employee;
 import com.globits.da.domain.address.Commune;
 import com.globits.da.domain.address.District;
 import com.globits.da.domain.address.Province;
-import com.globits.da.dto.EmployeeDto;
 import com.globits.da.dto.request.CommuneRequest;
 import com.globits.da.dto.request.DistrictRequest;
 import com.globits.da.dto.request.ProvinceRequest;
-import com.globits.da.dto.response.CommuneResponse;
-import com.globits.da.dto.response.DistrictResponse;
 import com.globits.da.dto.response.ProvinceResponse;
 import com.globits.da.exception.AppException;
 import com.globits.da.exception.ErrorCode;
@@ -121,11 +117,6 @@ public class ProvinceServiceImpl implements ProvinceService {
         // Lưu đồng thời tỉnh và các huyện
         Province savedProvince = provinceRepository.save(province);
 
-        savedProvince.getDistricts().stream().map(d -> {
-            return new DistrictResponse(d.getId(), d.getCode(), d.getName(), d.getProvince().getId(), d.getProvince().getName()); // Không cần xã ở đây
-        }).collect(Collectors.toList());
-
-
         // Trả về response sau khi lưu thành công
         return new ProvinceResponse(savedProvince.getId(), savedProvince.getCode(), savedProvince.getName());
 
@@ -156,22 +147,15 @@ public class ProvinceServiceImpl implements ProvinceService {
 
         if (request.getDistrictRequests() != null) {
             for (DistrictRequest districtRequest : request.getDistrictRequests()) {
-                if (districtRequest.getId() != null) {
-                    // Huyện đã tồn tại -> Sửa huyện
-                    District existingDistrict = districtRepository.findById(districtRequest.getId())
-                            .orElseThrow(() -> new AppException(ErrorCode.CODE_NOT_EXISTED));
 
-                    existingDistrict.setCode(districtRequest.getCode());
-                    existingDistrict.setName(districtRequest.getName());
-                    updatedDistricts.add(existingDistrict);
-                } else {
-                    // Huyện mới -> Thêm huyện
-                    District newDistrict = new District();
-                    newDistrict.setCode(districtRequest.getCode());
-                    newDistrict.setName(districtRequest.getName());
-                    newDistrict.setProvince(province); // Liên kết huyện với tỉnh
-                    updatedDistricts.add(newDistrict);
-                }
+                // Huyện đã tồn tại -> Sửa huyện
+                District existingDistrict = districtRepository.findDistrictByCode(districtRequest.getCode())
+                        .orElseThrow(() -> new AppException(ErrorCode.CODE_NOT_EXISTED));
+
+                existingDistrict.setCode(districtRequest.getCode());
+                existingDistrict.setName(districtRequest.getName());
+                updatedDistricts.add(existingDistrict);
+
             }
         }else{
             throw new AppException(ErrorCode.REQUEST_NOT_NULL);

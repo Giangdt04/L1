@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Repository
 public interface CertificateRepository extends JpaRepository<Certificate,Integer> {
-    @Query("select new com.globits.da.dto.response.CertificateResponse(p.id, p.code, p.name,p.begin, p.end,p.status, p.province.id) from Certificate p")
+    @Query("select new com.globits.da.dto.response.CertificateResponse(p.id, p.code, p.name,p.begin, p.end,p.status, p.province.id, p.employee.id) from Certificate p")
     List<CertificateResponse> getAll();
 
     Optional<Certificate> findCertificateByCode(String code);

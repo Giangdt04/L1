@@ -20,7 +20,7 @@ public class CertificateResponse {
     public CertificateResponse(){
     }
 
-    public CertificateResponse(Integer id, String code, String name, LocalDate begin, LocalDate end, Boolean status, Integer provinceId) {
+    public CertificateResponse(Integer id, String code, String name, LocalDate begin, LocalDate end, Boolean status, Integer provinceId, Integer employeeId) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -28,6 +28,7 @@ public class CertificateResponse {
         this.end = end;
         this.status = status;
         this.provinceId = provinceId;
+        this.employeeId = employeeId;
     }
 
     public Integer getEmployeeId() {

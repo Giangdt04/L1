@@ -1,5 +1,7 @@
 package com.globits.da.domain.address;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -9,6 +11,7 @@ import javax.persistence.Table;
 @Table(name = "COMMUNE")
 public class Commune extends AbtractAddress{
     @ManyToOne
+    @JsonManagedReference
     private District district;
 
     public Commune() {

@@ -89,9 +89,14 @@ public class DistrictServiceImpl implements DistrictService {
         if(request.getCommuneRequests() == null){
             throw new IllegalArgumentException("CommuneRequests cannot be null");
         }
+
+        Province province = provinceRepository.findById(request.getProvinceId())
+                .orElseThrow(() -> new RuntimeException("Province not found with id: " + request.getProvinceId()));
+
         District district = new District();
         district.setCode(request.getCode());
         district.setName(request.getName());
+        district.setProvince(province);
 
         List<Commune> communes = request.getCommuneRequests().stream()
                 .filter(c -> c != null && c.getCode() != null && c.getName() != null)

@@ -156,7 +156,8 @@ public class CertificateServiceImpl implements CertificateService {
                 savedCertificate.getBegin(),
                 savedCertificate.getEnd(),
                 savedCertificate.getStatus(),
-                savedCertificate.getProvince().getId()
+                savedCertificate.getProvince().getId(),
+                savedCertificate.getEmployee().getId()
         );
     }
 }
